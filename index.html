@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayank Joshi — Generative AI &amp; Backend Engineer</title>
+  <meta name="description" content="Mayank Joshi — Generative AI and Backend Engineer based in Delhi, India. Building RAG systems, LLM apps, and backend APIs." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg:      #f4efe6;
+      --bg2:     #ede8de;
+      --bg3:     #e8e2d8;
+      --border:  #d4cdc2;
+      --ink:     #1c1814;
+      --mid:     #54483e;
+      --soft:    #8c7f72;
+      --accent:  #c05621;
+      --faint:   #fdf0e8;
+      --faint-b: #f0d5bb;
+      --green:   #22c55e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      font-size: 17px;
+      margin: 0;
+    }
+
+    /* ── Dot grid ── */
+    .dot-bg {
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, #bfb8ae 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+    }
+    .dot-fade {
+      background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(244,239,230,0.05) 0%, rgba(244,239,230,0.96) 65%);
+    }
+
+    /* ── Name gradient ── */
+    .name-gradient {
+      background: linear-gradient(125deg, #1c1814 35%, #c05621 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Animations ── */
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      50%       { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+    }
+    .pulse-dot { animation: pulse-ring 2.2s ease infinite; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .h1 { animation: fadeUp .65s .08s ease both; }
+    .h2 { animation: fadeUp .65s .22s ease both; }
+    .h3 { animation: fadeUp .65s .36s ease both; }
+    .h4 { animation: fadeUp .65s .50s ease both; }
+    .h5 { animation: fadeUp .65s .64s ease both; }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .spin-slow { animation: spin-slow 18s linear infinite; }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ── Cards ── */
+    .card { transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent) !important;
+      box-shadow: 0 10px 30px rgba(192,86,33,0.1);
+    }
+
+    /* ── Pills ── */
+    .pill { transition: background .18s, color .18s, border-color .18s; cursor: default; }
+    .pill:hover { background: var(--ink) !important; color: var(--bg) !important; border-color: var(--ink) !important; }
+
+    /* ── Timeline connector ── */
+    .tl-item:not(:last-child) .tl-dot::after {
+      content: '';
+      position: absolute;
+      left: 7px; top: 18px; bottom: -30px;
+      width: 1px; background: var(--border);
+    }
+
+    /* ── Nav ── */
+    .nav-a { position: relative; transition: color .18s; text-decoration: none; }
+    .nav-a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1.5px; background: var(--accent);
+      transform: scaleX(0); transition: transform .2s; transform-origin: left;
+    }
+    .nav-a:hover { color: var(--accent) !important; }
+    .nav-a:hover::after, .nav-a.active::after { transform: scaleX(1); }
+    .nav-a.active { color: var(--accent) !important; }
+
+    /* ── Section chip ── */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 999px;
+      background: var(--bg3); border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--soft);
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 8px;
+      font-family: 'Syne', sans-serif; font-weight: 500; font-size: .95rem;
+      text-decoration: none; transition: background .2s, border-color .2s, color .2s;
+      white-space: nowrap;
+    }
+    .btn-dark  { background: var(--ink);  color: var(--bg);     border: 1px solid var(--ink);   }
+    .btn-dark:hover  { background: var(--accent); border-color: var(--accent); }
+    .btn-ghost { background: transparent; color: var(--mid);    border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+    .btn-warm  { background: var(--faint); color: var(--accent); border: 1px solid var(--faint-b); }
+    .btn-warm:hover { background: #f5e0cc; }
+
+    .btn-sm {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 13px; border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: .73rem;
+      text-decoration: none; transition: background .18s, color .18s, border-color .18s;
+    }
+    .btn-sm-dark  { background: var(--ink);  color: var(--bg);  border: 1px solid var(--ink); }
+    .btn-sm-dark:hover  { background: var(--accent); border-color: var(--accent); }
+    .btn-sm-ghost { background: var(--bg3); color: var(--mid); border: 1px solid var(--border); }
+    .btn-sm-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* ── Detail row (profile card) ── */
+    .detail-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      background: rgba(244,239,230,0.75); border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .detail-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--faint); border: 1px solid var(--faint-b);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .detail-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--soft);
+    }
+    .detail-value {
+      font-size: .88rem; font-weight: 500; color: var(--ink); margin-top: 1px;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+    /* ── Mobile nav toggle ── */
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr !important; }
+      .profile-col { display: none !important; }
+      .about-grid { grid-template-columns: 1fr !important; }
+      .projects-grid { grid-template-columns: 1fr 1fr !important; }
+      .projects-featured { grid-column: span 2 !important; }
+      .skills-grid-4 { grid-template-columns: 1fr 1fr !important; }
+      .achieve-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 600px) {
+      .desktop-nav { display: none !important; }
+      .mobile-menu-btn { display: flex !important; }
+      .projects-grid { grid-template-columns: 1fr !important; }
+      .projects-featured { grid-column: span 1 !important; }
+      .skills-grid-4 { grid-template-columns: 1fr !important; }
+      .hero-name { font-size: clamp(2.8rem, 14vw, 4rem) !important; }
+      .contact-btns { flex-direction: column; align-items: stretch; }
+      .contact-btns .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+═══════════════════════════════════════ -->
+<header id="site-header" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(244,239,230,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
+  <div style="max-width:1080px;margin:0 auto;padding:0 1.5rem;height:56px;display:flex;align-items:center;justify-content:space-between;">
+
+    <a href="#hero" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em;">
+      mj<span style="color:var(--accent);">.</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="desktop-nav" style="display:flex;gap:2rem;align-items:center;">
+      <a href="#about"      class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">About</a>
+      <a href="#experience" class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Work</a>
+      <a href="#projects"   class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Projects</a>
+      <a href="#skills"     class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Skills</a>
+      <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark" style="padding:8px 16px;font-size:.82rem;">
+        <i data-lucide="mail" style="width:14px;height:14px;"></i> Say hello
+      </a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu"
+            style="display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;">
+      <i data-lucide="menu" style="width:18px;height:18px;color:var(--mid);" id="menu-icon"></i>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div class="mobile-menu" id="mobile-menu"
+       style="flex-direction:column;padding:.75rem 1.5rem 1rem;gap:.5rem;border-top:1px solid var(--border);background:rgba(244,239,230,0.97);">
+    <a href="#about"      class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">About</a>
+    <a href="#experience" class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Work</a>
+    <a href="#projects"   class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Projects</a>
+    <a href="#skills"     class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Skills</a>
+    <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark" style="margin-top:.5rem;justify-content:center;">
+      <i data-lucide="mail" style="width:15px;height:15px;"></i> Say hello
+    </a>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="hero" class="dot-bg" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:56px;">
+  <div class="dot-fade" style="position:absolute;inset:0;pointer-events:none;"></div>
+
+  <div style="position:relative;max-width:1080px;margin:0 auto;padding:5rem 1.5rem 6rem;width:100%;">
+    <div class="hero-grid" style="display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center;">
+
+      <!-- Left: text content -->
+      <div>
+        <!-- Status badge -->
+        <div class="h1" style="display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border-radius:999px;background:var(--faint);border:1px solid var(--faint-b);font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--soft);margin-bottom:1.8rem;">
+          <span class="pulse-dot" style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
+          Open to roles &amp; internships · Delhi, India
+        </div>
+
+        <!-- Name -->
+        <h1 class="h2 name-gradient hero-name" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,7vw,6rem);line-height:1.0;letter-spacing:-.03em;margin-bottom:1.4rem;">
+          Mayank<br/>Joshi.
+        </h1>
+
+        <!-- Role pills -->
+        <div class="h3" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.8rem;">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
+            <i data-lucide="brain" style="width:13px;height:13px;color:var(--accent);"></i> Generative AI
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
+            <i data-lucide="server" style="width:13px;height:13px;color:var(--accent);"></i> Backend Engineering
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
+            <i data-lucide="search-code" style="width:13px;height:13px;color:var(--accent);"></i> RAG Systems
+          </span>
+        </div>
+
+        <!-- Bio -->
+        <p class="h4" style="font-size:1.1rem;line-height:1.85;color:var(--mid);margin-bottom:2.2rem;max-width:520px;">
+          I build intelligent systems — RAG pipelines, LLM-powered apps, and backend APIs
+          that actually hold up in production. Final year @ ADGITM, Delhi.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="h5" style="display:flex;flex-wrap:wrap;gap:11px;">
+          <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn btn-dark">
+            <i data-lucide="github" style="width:17px;height:17px;"></i> GitHub
+            <i data-lucide="arrow-up-right" style="width:14px;height:14px;opacity:.7;"></i>
+          </a>
+          <a href="#projects" class="btn btn-ghost">
+            View projects <i data-lucide="chevron-down" style="width:15px;height:15px;"></i>
+          </a>
+          <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-warm">
+            <i data-lucide="send" style="width:15px;height:15px;"></i> Get in touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: profile card -->
+      <div class="profile-col" style="display:flex;flex-direction:column;align-items:center;">
+
+        <!-- Avatar with spinning ring -->
+        <div style="position:relative;margin-bottom:1.5rem;">
+          <!-- Outer dashed ring (spins) -->
+          <div class="spin-slow" style="position:absolute;inset:-12px;border-radius:50%;border:1.5px dashed var(--border);pointer-events:none;"></div>
+          <!-- Accent arc on top of ring -->
+          <div class="spin-slow" style="position:absolute;inset:-12px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--accent);border-right-color:var(--accent);pointer-events:none;"></div>
+
+          <!-- Photo circle — replace src="photo.jpg" with your image path -->
+          <div style="width:176px;height:176px;border-radius:50%;overflow:hidden;border:3px solid var(--bg3);box-shadow:0 8px 32px rgba(28,24,20,0.13);background:var(--bg3);position:relative;">
+            <img id="pfp" src="photo.jpg" alt="Mayank Joshi"
+                 style="width:100%;height:100%;object-fit:cover;"
+                 onerror="this.style.display='none';document.getElementById('pfp-fallback').style.display='flex';" />
+            <div id="pfp-fallback" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#e8e2d8,#ddd7cc);">
+              <i data-lucide="user-round" style="width:54px;height:54px;color:var(--soft);margin-bottom:5px;"></i>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--soft);text-transform:uppercase;">Add photo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Name tag -->
+        <div style="text-align:center;margin-bottom:1.2rem;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);">Mayank Joshi</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Gen AI · Backend Engineer</div>
+        </div>
+
+        <!-- Detail rows -->
+        <div style="width:100%;display:flex;flex-direction:column;gap:9px;">
+
+          <div class="detail-row">
+            <div class="detail-icon"><i data-lucide="map-pin" style="width:13px;height:13px;color:var(--accent);"></i></div>
+            <div>
+              <div class="detail-label">Location</div>
+              <div class="detail-value">Delhi, India</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-icon"><i data-lucide="graduation-cap" style="width:13px;height:13px;color:var(--accent);"></i></div>
+            <div>
+              <div class="detail-label">Education</div>
+              <div class="detail-value">B.Tech IT · ADGITM '26</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-icon"><i data-lucide="github" style="width:13px;height:13px;color:var(--accent);"></i></div>
+            <div>
+              <div class="detail-label">GitHub</div>
+              <a href="https://github.com/teenybopper" target="_blank" rel="noopener"
+                 style="font-size:.88rem;font-weight:500;color:var(--accent);text-decoration:none;margin-top:1px;display:block;">
+                teenybopper ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="detail-row" style="background:rgba(253,240,232,0.85);border-color:var(--faint-b);">
+            <div class="detail-icon">
+              <span style="width:9px;height:9px;border-radius:50%;background:var(--green);display:block;"></span>
+            </div>
+            <div>
+              <div class="detail-label">Status</div>
+              <div class="detail-value">Open to opportunities</div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /profile card -->
+
+    </div><!-- /hero grid -->
+
+    <!-- Scroll hint -->
+    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;opacity:.35;pointer-events:none;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);">scroll</span>
+      <i data-lucide="mouse" style="width:15px;height:15px;color:var(--soft);"></i>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section id="about" style="border-top:1px solid var(--border);">
+  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
+
+    <div class="reveal" style="margin-bottom:2.5rem;">
+      <span class="chip"><i data-lucide="user" style="width:11px;height:11px;"></i> About</span>
+    </div>
+
+    <div class="reveal about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;">
+
+      <!-- Text -->
+      <div>
+        <p style="font-size:1.12rem;line-height:1.85;color:var(--ink);margin-bottom:1.2rem;">
+          Final-year <strong style="color:var(--accent);">Information Technology</strong> student at ADGITM, Delhi — graduating June 2026.
+          I work at the intersection of language models and real backend engineering.
+        </p>
+        <p style="font-size:1.02rem;line-height:1.85;color:var(--mid);margin-bottom:1.2rem;">
+          My focus is building things that are genuinely useful: RAG pipelines that retrieve the right context,
+          LLM apps that don't hallucinate, and APIs that are clean and maintainable. I've shipped across
+          two companies and a handful of personal projects.
+        </p>
+        <p style="font-size:1.02rem;line-height:1.85;color:var(--mid);">
+          Outside of code I enjoy hackathons, breaking down how frontier models reason, and occasionally watching cricket.
+        </p>
+      </div>
+
+      <!-- Stat cards -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+        <div class="card" style="grid-column:1/-1;padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Status</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.98rem;display:flex;align-items:center;gap:8px;">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
+            Open to opportunities
+          </div>
+        </div>
+
+        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Degree</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;">B.Tech IT</div>
+          <div style="font-size:.78rem;color:var(--soft);margin-top:2px;">ADGITM · 2026</div>
+        </div>
+
+        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Location</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:5px;">
+            <i data-lucide="map-pin" style="width:13px;height:13px;color:var(--accent);"></i> Delhi, India
+          </div>
+        </div>
+
+        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--faint);border:1px solid var(--faint-b);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:5px;">GPA</div>
+          <div style="display:flex;align-items:baseline;gap:4px;">
+            <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;color:var(--accent);">7.4</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--soft);">/ 10</span>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column:1/-1;padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">GitHub</div>
+          <a href="https://github.com/teenybopper" target="_blank" rel="noopener"
+             style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            teenybopper <i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     EXPERIENCE
+═══════════════════════════════════════ -->
+<section id="experience" style="border-top:1px solid var(--border);background:var(--bg2);">
+  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
+
+    <div class="reveal" style="margin-bottom:2.5rem;">
+      <span class="chip"><i data-lucide="briefcase" style="width:11px;height:11px;"></i> Work Experience</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+
+      <!-- Job 1 – Most recent (placeholder – fill in company + details) -->
+      <div class="reveal tl-item" style="position:relative;padding-left:2.4rem;">
+        <div class="tl-dot" style="position:absolute;left:0;top:18px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--faint);border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;">
+            <div>
+              <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:0;">AI / Backend Engineer</h3>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Company Name · [Update me]</div>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--soft);white-space:nowrap;">
+              <i data-lucide="calendar" style="width:11px;height:11px;"></i> 2025 — Present
+            </span>
+          </div>
+          <p style="font-size:.98rem;line-height:1.78;color:var(--mid);margin-bottom:14px;">
+            [Describe what you built — RAG pipelines, LLM integrations, backend services, APIs, etc.]
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Python</span>
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">LangChain</span>
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">[Add tech]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 2 (placeholder – fill in company + details) -->
+      <div class="reveal tl-item" style="position:relative;padding-left:2.4rem;">
+        <div class="tl-dot" style="position:absolute;left:0;top:18px;">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--bg3);border:2.5px solid var(--border);display:flex;align-items:center;justify-content:center;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--soft);"></div>
+          </div>
+        </div>
+        <div class="card" style="padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;">
+            <div>
+              <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:0;">AI / Backend Engineer</h3>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Company Name · [Update me]</div>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--soft);white-space:nowrap;">
+              <i data-lucide="calendar" style="width:11px;height:11px;"></i> 2024 — 2025
+            </span>
+          </div>
+          <p style="font-size:.98rem;line-height:1.78;color:var(--mid);margin-bottom:14px;">
+            [Describe what you shipped, tools used, impact made.]
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Django</span>
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">REST APIs</span>
+            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">[Add tech]</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PROJECTS
+═══════════════════════════════════════ -->
+<section id="projects" style="border-top:1px solid var(--border);">
+  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
+
+    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:2.5rem;">
+      <span class="chip"><i data-lucide="layout-grid" style="width:11px;height:11px;"></i> Projects</span>
+      <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost">
+        <i data-lucide="github" style="width:13px;height:13px;"></i> All on GitHub
+      </a>
+    </div>
+
+    <div class="projects-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;">
+
+      <!-- Featured card (spans 2 cols) -->
+      <div class="reveal card projects-featured" style="grid-column:span 2;padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px;">
+          <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);">
+            <i data-lucide="message-square-code" style="width:20px;height:20px;color:var(--accent);"></i>
+          </div>
+          <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost">
+            <i data-lucide="github" style="width:12px;height:12px;"></i> Source
+          </a>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.22rem;margin:0 0 8px;">PlugTalk — LLM Chatbot</h3>
+        <p style="font-size:.97rem;line-height:1.78;color:var(--mid);margin-bottom:15px;">
+          A dynamic chatbot that scrapes website content and answers queries in real time using conversational AI.
+          Supports custom API keys with live document retrieval and vector-based response generation.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">LangChain</span>
+          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">OpenAI</span>
+          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Chroma</span>
+          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Streamlit</span>
+          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">RAG</span>
+        </div>
+      </div>
+
+      <!-- Football Q&A -->
+      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
+        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
+          <i data-lucide="trophy" style="width:18px;height:18px;color:var(--accent);"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Football Q&amp;A</h3>
+        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
+          NLP-powered web app that answers natural language queries about football matches in real time.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">LangChain</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">OpenAI</span>
+        </div>
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
+          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
+        </a>
+      </div>
+
+      <!-- Cricket Community -->
+      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
+        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
+          <i data-lucide="users" style="width:18px;height:18px;color:var(--accent);"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Digital Cricket Community</h3>
+        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
+          Full-stack platform for cricket fans — posts, search, user profiles, and sponsorship features built with Django.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Django</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">MySQL</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Bootstrap</span>
+        </div>
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
+          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
+        </a>
+      </div>
+
+      <!-- Legal Aid Chatbot -->
+      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
+        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
+          <i data-lucide="scale" style="width:18px;height:18px;color:var(--accent);"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Legal Aid Chatbot</h3>
+        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
+          Free chatbot for basic legal assistance on abuse-related issues, with informative blogs. Built at Google DSC hackathon (6th place).
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Python</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">NLP</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Django</span>
+        </div>
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
+          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
+        </a>
+      </div>
+
+      <!-- Cloudburst Prediction -->
+      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
+        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
+          <i data-lucide="cloud-rain" style="width:18px;height:18px;color:var(--accent);"></i>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Cloudburst Prediction</h3>
+        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
+          ML model that takes location as input and predicts cloudbursts with up to 65% accuracy. Built for Smart India Hackathon 2023.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Python</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">ML</span>
+          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">SIH '23</span>
+        </div>
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
+          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
+        </a>
+      </div>
+
+      <!-- Placeholder for new project — full width -->
+      <div class="reveal" style="grid-column:1/-1;padding:20px 26px;border-radius:14px;background:var(--faint);border:1.5px dashed var(--faint-b);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="padding:9px;border-radius:10px;background:var(--bg);border:1px solid var(--faint-b);">
+            <i data-lucide="plus-circle" style="width:18px;height:18px;color:var(--accent);"></i>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.97rem;color:var(--accent);">New Project — [Update me]</div>
+            <div style="font-size:.88rem;color:var(--soft);margin-top:2px;">Add your latest project — name, description, tech stack &amp; link.</div>
+          </div>
+        </div>
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-dark">
+          <i data-lucide="github" style="width:13px;height:13px;"></i> GitHub
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SKILLS
+═══════════════════════════════════════ -->
+<section id="skills" style="border-top:1px solid var(--border);background:var(--bg2);">
+  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
+
+    <div class="reveal" style="margin-bottom:2.5rem;">
+      <span class="chip"><i data-lucide="cpu" style="width:11px;height:11px;"></i> Skills &amp; Stack</span>
+    </div>
+
+    <div class="reveal skills-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;">
+
+      <!-- AI / ML -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
+          <i data-lucide="brain-circuit" style="width:15px;height:15px;color:var(--accent);"></i>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">AI / ML</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">LangChain</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">OpenAI API</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">RAG</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Chroma DB</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Prompt Eng.</span>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
+          <i data-lucide="server" style="width:15px;height:15px;color:var(--accent);"></i>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Backend</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Python</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Django</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Flask</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">REST APIs</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">SQL / MySQL</span>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
+          <i data-lucide="wrench" style="width:15px;height:15px;color:var(--accent);"></i>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Tools</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Git / GitHub</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Streamlit</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Linux</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Postman</span>
+        </div>
+      </div>
+
+      <!-- Other -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
+          <i data-lucide="code-2" style="width:15px;height:15px;color:var(--accent);"></i>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Other</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">JavaScript</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">HTML / CSS</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">DSA · Python</span>
+          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">LeetCode</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Achievements -->
+    <div class="reveal" style="margin-top:2.5rem;padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:1.1rem;">
+        <i data-lucide="award" style="width:15px;height:15px;color:var(--accent);"></i>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Achievements</span>
+      </div>
+      <div class="achieve-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div style="display:flex;align-items:flex-start;gap:9px;">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
+          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">SIH '24 — cleared for national finals</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px;">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
+          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">Launchpad Ideathon — Top 10 out of 100+ teams</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:9px;">
+          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
+          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">6th place — Google DSC Hackathon (25 teams)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<section id="contact" style="border-top:1px solid var(--border);">
+  <div style="max-width:1080px;margin:0 auto;padding:6rem 1.5rem;text-align:center;">
+
+    <div class="reveal" style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+      <span class="chip"><i data-lucide="send" style="width:11px;height:11px;"></i> Contact</span>
+    </div>
+
+    <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.1rem,5vw,3.6rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:1.2rem;">
+      Let's build something<br/><span style="color:var(--accent);">together.</span>
+    </h2>
+
+    <p class="reveal" style="font-size:1.07rem;color:var(--mid);max-width:460px;margin:0 auto 2.5rem;line-height:1.85;">
+      Looking for full-time roles and internships in AI engineering &amp; backend development.
+      If you're building something interesting, I'd love to hear about it.
+    </p>
+
+    <div class="reveal contact-btns" style="display:flex;flex-wrap:wrap;justify-content:center;gap:11px;">
+      <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark">
+        <i data-lucide="mail" style="width:17px;height:17px;"></i>
+        mayank.joshi2174@gmail.com
+      </a>
+      <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn btn-ghost">
+        <i data-lucide="github" style="width:17px;height:17px;"></i> GitHub
+      </a>
+      <a href="tel:+918700056469" class="btn btn-ghost">
+        <i data-lucide="phone" style="width:17px;height:17px;"></i> +91 87000 56469
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer style="border-top:1px solid var(--border);padding:1.4rem 1.5rem;text-align:center;">
+  <p style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">
+    Mayank Joshi &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; 2025
+  </p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+  // ── Init Lucide icons ──
+  lucide.createIcons();
+
+  // ── Profile photo fallback ──
+  // If photo.jpg doesn't exist, show the initials placeholder
+  const pfp = document.getElementById('pfp');
+  const pfpFallback = document.getElementById('pfp-fallback');
+  if (pfp) {
+    pfp.addEventListener('load', () => {
+      pfp.style.display = 'block';
+      pfpFallback.style.display = 'none';
+    });
+    pfp.addEventListener('error', () => {
+      pfp.style.display = 'none';
+      pfpFallback.style.display = 'flex';
+    });
+    // Trigger check if already loaded (cached)
+    if (pfp.complete) {
+      if (pfp.naturalWidth === 0) {
+        pfp.style.display = 'none';
+        pfpFallback.style.display = 'flex';
+      } else {
+        pfp.style.display = 'block';
+        pfpFallback.style.display = 'none';
+      }
+    }
+  }
+
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in'), i * 70);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // ── Active nav link on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-a');
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 130) current = s.id;
+    });
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('active', isActive);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  // ── Mobile menu toggle ──
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    const isOpen = menu.classList.toggle('open');
+    // Swap icon
+    icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+    lucide.createIcons();
+  }
+
+  // ── Close mobile menu on outside click ──
+  document.addEventListener('click', (e) => {
+    const header = document.getElementById('site-header');
+    if (!header.contains(e.target)) {
+      const menu = document.getElementById('mobile-menu');
+      if (menu.classList.contains('open')) toggleMenu();
+    }
+  });
+</script>
+</body>
+</html>
