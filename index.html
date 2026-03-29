@@ -4,904 +4,730 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mayank Joshi — Generative AI &amp; Backend Engineer</title>
-  <meta name="description" content="Mayank Joshi — Generative AI and Backend Engineer based in Delhi, India. Building RAG systems, LLM apps, and backend APIs." />
+  <meta name="description" content="Mayank Joshi — Generative AI and Backend Engineer based in Delhi, India." />
 
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['Syne', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-        },
-      },
-    };
-  </script>
 
   <style>
     :root {
-      --bg:      #f4efe6;
+      --bg:      #f5f0e8;
       --bg2:     #ede8de;
-      --bg3:     #e8e2d8;
-      --border:  #d4cdc2;
-      --ink:     #1c1814;
-      --mid:     #54483e;
-      --soft:    #8c7f72;
-      --accent:  #c05621;
+      --bg3:     #e4ddd4;
+      --border:  #d6cfc6;
+      --ink:     #1a1612;
+      --mid:     #52463c;
+      --soft:    #8a7d70;
+      --accent:  #bf5521;
       --faint:   #fdf0e8;
-      --faint-b: #f0d5bb;
+      --faint-b: #efd4b8;
       --green:   #22c55e;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
-      font-size: 17px;
-      margin: 0;
+      font-size: 18px;
+      line-height: 1.65;
     }
 
-    /* ── Dot grid ── */
-    .dot-bg {
-      background-color: var(--bg);
-      background-image: radial-gradient(circle, #bfb8ae 1.2px, transparent 1.2px);
-      background-size: 26px 26px;
-    }
-    .dot-fade {
-      background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(244,239,230,0.05) 0%, rgba(244,239,230,0.96) 65%);
-    }
-
-    /* ── Name gradient ── */
-    .name-gradient {
-      background: linear-gradient(125deg, #1c1814 35%, #c05621 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* ── Animations ── */
-    @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-      50%       { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
-    }
-    .pulse-dot { animation: pulse-ring 2.2s ease infinite; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .h1 { animation: fadeUp .65s .08s ease both; }
-    .h2 { animation: fadeUp .65s .22s ease both; }
-    .h3 { animation: fadeUp .65s .36s ease both; }
-    .h4 { animation: fadeUp .65s .50s ease both; }
-    .h5 { animation: fadeUp .65s .64s ease both; }
-
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    .spin-slow { animation: spin-slow 18s linear infinite; }
-
-    /* ── Scroll reveal ── */
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-
-    /* ── Cards ── */
-    .card { transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent) !important;
-      box-shadow: 0 10px 30px rgba(192,86,33,0.1);
-    }
-
-    /* ── Pills ── */
-    .pill { transition: background .18s, color .18s, border-color .18s; cursor: default; }
-    .pill:hover { background: var(--ink) !important; color: var(--bg) !important; border-color: var(--ink) !important; }
-
-    /* ── Timeline connector ── */
-    .tl-item:not(:last-child) .tl-dot::after {
-      content: '';
-      position: absolute;
-      left: 7px; top: 18px; bottom: -30px;
-      width: 1px; background: var(--border);
-    }
-
-    /* ── Nav ── */
-    .nav-a { position: relative; transition: color .18s; text-decoration: none; }
-    .nav-a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-      height: 1.5px; background: var(--accent);
-      transform: scaleX(0); transition: transform .2s; transform-origin: left;
-    }
-    .nav-a:hover { color: var(--accent) !important; }
-    .nav-a:hover::after, .nav-a.active::after { transform: scaleX(1); }
-    .nav-a.active { color: var(--accent) !important; }
-
-    /* ── Section chip ── */
-    .chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 12px; border-radius: 999px;
-      background: var(--bg3); border: 1px solid var(--border);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .68rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--soft);
-    }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 22px; border-radius: 8px;
-      font-family: 'Syne', sans-serif; font-weight: 500; font-size: .95rem;
-      text-decoration: none; transition: background .2s, border-color .2s, color .2s;
-      white-space: nowrap;
-    }
-    .btn-dark  { background: var(--ink);  color: var(--bg);     border: 1px solid var(--ink);   }
-    .btn-dark:hover  { background: var(--accent); border-color: var(--accent); }
-    .btn-ghost { background: transparent; color: var(--mid);    border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
-    .btn-warm  { background: var(--faint); color: var(--accent); border: 1px solid var(--faint-b); }
-    .btn-warm:hover { background: #f5e0cc; }
-
-    .btn-sm {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 13px; border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: .73rem;
-      text-decoration: none; transition: background .18s, color .18s, border-color .18s;
-    }
-    .btn-sm-dark  { background: var(--ink);  color: var(--bg);  border: 1px solid var(--ink); }
-    .btn-sm-dark:hover  { background: var(--accent); border-color: var(--accent); }
-    .btn-sm-ghost { background: var(--bg3); color: var(--mid); border: 1px solid var(--border); }
-    .btn-sm-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-
-    /* ── Detail row (profile card) ── */
-    .detail-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-radius: 10px;
-      background: rgba(244,239,230,0.75); border: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-    }
-    .detail-icon {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: var(--faint); border: 1px solid var(--faint-b);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .detail-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .6rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--soft);
-    }
-    .detail-value {
-      font-size: .88rem; font-weight: 500; color: var(--ink); margin-top: 1px;
-    }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
-    /* ── Mobile nav toggle ── */
-    .mobile-menu { display: none; }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+      opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ── NAV ── */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,240,232,0.88);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1360px; margin: 0 auto;
+      padding: 0 1rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
+      color: var(--ink); text-decoration: none; letter-spacing: -.02em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--soft); text-decoration: none;
+      position: relative; transition: color .2s;
+    }
+    .nav-a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: var(--accent);
+      transform: scaleX(0); transition: transform .22s; transform-origin: left;
+    }
+    .nav-a:hover, .nav-a.active { color: var(--accent); }
+    .nav-a:hover::after, .nav-a.active::after { transform: scaleX(1); }
+    .nav-cta {
+      font-family: 'Syne', sans-serif; font-weight: 600; font-size: .84rem;
+      padding: 8px 18px; border-radius: 7px;
+      background: var(--ink); color: var(--bg);
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--accent); }
+    .hamburger {
+      display: none; cursor: pointer; align-items: center; justify-content: center;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px; color: var(--mid);
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      padding: .8rem 1rem 1rem; border-top: 1px solid var(--border);
+      background: rgba(245,240,232,.97); gap: .7rem;
+    }
     .mobile-menu.open { display: flex; }
 
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr !important; }
-      .profile-col { display: none !important; }
-      .about-grid { grid-template-columns: 1fr !important; }
-      .projects-grid { grid-template-columns: 1fr 1fr !important; }
-      .projects-featured { grid-column: span 2 !important; }
-      .skills-grid-4 { grid-template-columns: 1fr 1fr !important; }
-      .achieve-grid { grid-template-columns: 1fr !important; }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 56px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, #c5bdb4 1px, transparent 1px);
+      background-size: 28px 28px; opacity: .5;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 15%, var(--bg) 72%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1360px; margin: 0 auto;
+      padding: 3rem 1rem 4rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+      opacity: 0; animation: fadeUp .6s .1s ease both;
+    }
+    .hero-eyebrow-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2.4s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .35; transform: scale(.65); }
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(3.6rem, 7.5vw, 6.8rem);
+      line-height: .94; letter-spacing: -.04em;
+      color: var(--ink); margin-bottom: 1.3rem;
+      opacity: 0; animation: fadeUp .65s .22s ease both;
+    }
+    .hero-name em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--ink) 40%, var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-bio {
+      font-size: 1.08rem; line-height: 1.88; color: var(--mid);
+      margin-bottom: 1.7rem; max-width: 560px;
+      opacity: 0; animation: fadeUp .65s .36s ease both;
+    }
+    .hero-bio strong { color: var(--ink); font-weight: 500; }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp .65s .5s ease both;
+    }
+    .btn-primary {
+      font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem;
+      padding: 11px 24px; border-radius: 8px;
+      background: var(--ink); color: var(--bg);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-secondary {
+      font-family: 'Syne', sans-serif; font-weight: 500; font-size: .95rem;
+      padding: 11px 24px; border-radius: 8px;
+      background: transparent; color: var(--mid);
+      border: 1px solid var(--border);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem; letter-spacing: .08em; color: var(--soft);
+      opacity: 0; animation: fadeUp .65s .62s ease both;
+    }
+    .hero-meta-item { display: flex; align-items: center; gap: 6px; }
+
+    /* RIGHT: photo card */
+    .hero-right {
+      display: flex; flex-direction: column; align-items: center;
+      opacity: 0; animation: fadeUp .7s .3s ease both;
+    }
+    .photo-wrap { position: relative; margin-bottom: 1.1rem; }
+    .photo-ring {
+      position: absolute; inset: -10px; border-radius: 50%;
+      border: 1.5px dashed var(--border);
+      animation: spin 22s linear infinite; pointer-events: none;
+    }
+    .photo-ring-accent {
+      position: absolute; inset: -10px; border-radius: 50%;
+      border: 1.5px solid transparent;
+      border-top-color: var(--accent); border-right-color: var(--accent);
+      animation: spin 22s linear infinite; pointer-events: none;
+    }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .photo-circle {
+      width: 200px; height: 200px; border-radius: 50%;
+      overflow: hidden; border: 3px solid var(--bg3);
+      box-shadow: 0 10px 36px rgba(28,24,20,.14);
+      background: var(--bg3); position: relative;
+    }
+    .photo-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-fallback {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(145deg,#e8e2d8,#ddd7cc);
+    }
+    .photo-fallback svg { width: 56px; height: 56px; color: var(--soft); }
+    .photo-nametag { text-align: center; margin-bottom: .9rem; }
+    .photo-nametag-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .photo-nametag-role { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--accent); letter-spacing: .05em; margin-top: 3px; }
+    .hero-socials { display: flex; align-items: center; gap: 10px; }
+    .hero-social-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--bg3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--mid); text-decoration: none;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .hero-social-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--faint); }
+    .hero-social-btn svg { width: 17px; height: 17px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      opacity: .28; pointer-events: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--soft);
+    }
+    .scroll-line { width: 1px; height: 28px; background: var(--border); animation: scrollDrop 2s ease infinite; }
+    @keyframes scrollDrop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      60%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── SECTIONS ── */
+    .section { border-top: 1px solid var(--border); padding: 3.2rem 0; }
+    .section-alt { background: var(--bg2); }
+    .container { max-width: 1360px; margin: 0 auto; padding: 0 1rem; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 1.8rem;
+    }
+    .section-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--border); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid; grid-template-columns: 150px 1fr;
+      gap: 2rem; align-items: start;
+      padding: 1.7rem 0; border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .exp-date { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--soft); padding-top: 4px; }
+    .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 3px; }
+    .exp-company { font-family: 'JetBrains Mono', monospace; font-size: .74rem; color: var(--accent); letter-spacing: .04em; margin-bottom: .8rem; }
+    .exp-desc { font-size: 1rem; line-height: 1.82; color: var(--mid); margin-bottom: .85rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .7rem;
+      padding: 4px 10px; border-radius: 5px;
+      background: var(--bg3); color: var(--mid); border: 1px solid var(--border);
+      transition: background .18s, color .18s;
+    }
+    .tag:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; }
+
+    .proj-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      position: relative; cursor: pointer;
+    }
+    .proj-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(191,85,33,.1);
+    }
+    /* GitHub badge — visible on hover */
+    .proj-gh {
+      position: absolute; top: 16px; right: 16px;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--bg3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--soft);
+      opacity: 0; transform: scale(.85);
+      transition: opacity .22s, transform .22s, color .22s, border-color .22s;
+    }
+    .proj-gh svg { width: 14px; height: 14px; }
+    .proj-card:hover .proj-gh { opacity: 1; transform: scale(1); color: var(--accent); border-color: var(--accent); }
+
+    .proj-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--faint); border: 1px solid var(--faint-b);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; flex-shrink: 0; color: var(--accent);
+    }
+    .proj-icon svg { width: 20px; height: 20px; }
+    .proj-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.08rem; color: var(--ink); margin-bottom: .42rem; }
+    .proj-desc { font-size: .93rem; line-height: 1.78; color: var(--mid); flex: 1; margin-bottom: 1rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .proj-tag { font-family: 'JetBrains Mono', monospace; font-size: .64rem; padding: 3px 8px; border-radius: 4px; background: var(--bg3); color: var(--soft); border: 1px solid var(--border); }
+
+    .proj-featured { grid-column: span 7; }
+    .proj-featured .proj-title { font-size: 1.28rem; }
+    .proj-featured .proj-desc  { font-size: 1rem; }
+    .proj-card-sm { grid-column: span 5; }
+    .proj-card-3  { grid-column: span 4; }
+
+    /* ── SKILLS ── */
+    .skill-group { margin-bottom: 1.5rem; }
+    .skill-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .63rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--soft); margin-bottom: .7rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-pill {
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem;
+      padding: 7px 14px; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--mid); cursor: default;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .skill-pill:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .achieve-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 1.8rem; }
+    .achieve-card { padding: 14px 16px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+    .achieve-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 6px; }
+    .achieve-text { font-size: .93rem; line-height: 1.6; color: var(--mid); }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; }
+    .contact-heading { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem,6vw,4.2rem); letter-spacing: -.035em; line-height: 1.05; margin-bottom: 1rem; }
+    .contact-heading em { font-style: normal; color: var(--accent); }
+    .contact-sub { font-size: 1rem; color: var(--mid); max-width: 400px; margin: 0 auto 1.8rem; line-height: 1.9; }
+    .contact-email-link {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1rem,2.5vw,1.45rem);
+      color: var(--ink); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 10px;
+      border: 1.5px solid var(--border);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .contact-email-link:hover { border-color: var(--accent); color: var(--accent); background: var(--faint); }
+    .contact-footnote { margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .1em; color: var(--soft); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 1.2rem 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+    .footer-text { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+    .footer-links { display: flex; gap: 1.4rem; }
+    .footer-link { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .08em; color: var(--soft); text-decoration: none; transition: color .2s; }
+    .footer-link:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { flex-direction: row; gap: 1.5rem; align-self: start; justify-content: flex-start; }
+      .photo-wrap { margin-bottom: 0; }
+      .photo-circle { width: 90px; height: 90px; }
+      .photo-ring, .photo-ring-accent { inset: -6px; }
+      .exp-item { grid-template-columns: 1fr; gap: .55rem; }
+      .proj-featured, .proj-card-sm, .proj-card-3 { grid-column: span 12; }
+      .achieve-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
-      .desktop-nav { display: none !important; }
-      .mobile-menu-btn { display: flex !important; }
-      .projects-grid { grid-template-columns: 1fr !important; }
-      .projects-featured { grid-column: span 1 !important; }
-      .skills-grid-4 { grid-template-columns: 1fr !important; }
-      .hero-name { font-size: clamp(2.8rem, 14vw, 4rem) !important; }
-      .contact-btns { flex-direction: column; align-items: stretch; }
-      .contact-btns .btn { justify-content: center; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-right { flex-direction: column; align-items: center; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-═══════════════════════════════════════ -->
-<header id="site-header" style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(244,239,230,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);">
-  <div style="max-width:1080px;margin:0 auto;padding:0 1.5rem;height:56px;display:flex;align-items:center;justify-content:space-between;">
-
-    <a href="#hero" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em;">
-      mj<span style="color:var(--accent);">.</span>
-    </a>
-
-    <!-- Desktop nav -->
-    <nav class="desktop-nav" style="display:flex;gap:2rem;align-items:center;">
-      <a href="#about"      class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">About</a>
-      <a href="#experience" class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Work</a>
-      <a href="#projects"   class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Projects</a>
-      <a href="#skills"     class="nav-a" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Skills</a>
-      <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark" style="padding:8px 16px;font-size:.82rem;">
-        <i data-lucide="mail" style="width:14px;height:14px;"></i> Say hello
-      </a>
+<!-- ═══ NAV ═══ -->
+<header id="site-header">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">mj<span>.</span></a>
+    <nav class="nav-links">
+      <a href="#experience" class="nav-a">Work</a>
+      <a href="#projects"   class="nav-a">Projects</a>
+      <a href="#skills"     class="nav-a">Skills</a>
+      <a href="resume.pdf"  class="nav-a" target="_blank" rel="noopener">CV</a>
+      <a href="#contact" class="nav-cta">Say hello</a>
     </nav>
-
-    <!-- Mobile hamburger -->
-    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu"
-            style="display:none;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);cursor:pointer;">
-      <i data-lucide="menu" style="width:18px;height:18px;color:var(--mid);" id="menu-icon"></i>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <svg id="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
     </button>
   </div>
-
-  <!-- Mobile dropdown -->
-  <div class="mobile-menu" id="mobile-menu"
-       style="flex-direction:column;padding:.75rem 1.5rem 1rem;gap:.5rem;border-top:1px solid var(--border);background:rgba(244,239,230,0.97);">
-    <a href="#about"      class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">About</a>
-    <a href="#experience" class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Work</a>
-    <a href="#projects"   class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Projects</a>
-    <a href="#skills"     class="nav-a" onclick="toggleMenu()" style="font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:.5rem 0;">Skills</a>
-    <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark" style="margin-top:.5rem;justify-content:center;">
-      <i data-lucide="mail" style="width:15px;height:15px;"></i> Say hello
-    </a>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#experience" class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Work</a>
+    <a href="#projects"   class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Projects</a>
+    <a href="#skills"     class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Skills</a>
+    <a href="resume.pdf"  class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0" target="_blank" rel="noopener">Resume</a>
+    <a href="#contact" class="nav-cta" onclick="toggleMenu()" style="margin-top:.4rem;text-align:center">Say hello</a>
   </div>
 </header>
 
 
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
-<section id="hero" class="dot-bg" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:56px;">
-  <div class="dot-fade" style="position:absolute;inset:0;pointer-events:none;"></div>
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-inner">
 
-  <div style="position:relative;max-width:1080px;margin:0 auto;padding:5rem 1.5rem 6rem;width:100%;">
-    <div class="hero-grid" style="display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center;">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Gen AI &nbsp;·&nbsp; Backend Engineer &nbsp;·&nbsp; Delhi, India
+      </div>
 
-      <!-- Left: text content -->
-      <div>
-        <!-- Status badge -->
-        <div class="h1" style="display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border-radius:999px;background:var(--faint);border:1px solid var(--faint-b);font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--soft);margin-bottom:1.8rem;">
-          <span class="pulse-dot" style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
-          Open to roles &amp; internships · Delhi, India
-        </div>
+      <h1 class="hero-name">Mayank<br/><em>Joshi.</em></h1>
 
-        <!-- Name -->
-        <h1 class="h2 name-gradient hero-name" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,7vw,6rem);line-height:1.0;letter-spacing:-.03em;margin-bottom:1.4rem;">
-          Mayank<br/>Joshi.
-        </h1>
+      <p class="hero-bio">
+        Final-year <strong>Information Technology</strong> student at ADGITM, graduating June 2026.
+        I build things at the intersection of language models and real backend engineering —
+        RAG pipelines that retrieve the right context, LLM apps that don't hallucinate,
+        and APIs that are clean and maintainable.
+      </p>
 
-        <!-- Role pills -->
-        <div class="h3" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.8rem;">
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
-            <i data-lucide="brain" style="width:13px;height:13px;color:var(--accent);"></i> Generative AI
-          </span>
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
-            <i data-lucide="server" style="width:13px;height:13px;color:var(--accent);"></i> Backend Engineering
-          </span>
-          <span style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mid);">
-            <i data-lucide="search-code" style="width:13px;height:13px;color:var(--accent);"></i> RAG Systems
-          </span>
-        </div>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Get in touch
+        </a>
+        <a href="#projects" class="btn-secondary">
+          See my work
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </div>
 
-        <!-- Bio -->
-        <p class="h4" style="font-size:1.1rem;line-height:1.85;color:var(--mid);margin-bottom:2.2rem;max-width:520px;">
-          I build intelligent systems — RAG pipelines, LLM-powered apps, and backend APIs
-          that actually hold up in production. Final year @ ADGITM, Delhi.
-        </p>
+      <div class="hero-meta">
+        <span class="hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Delhi, India
+        </span>
+        <span class="hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          B.Tech IT · ADGITM '26
+        </span>
+        <span class="hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          7.4 GPA
+        </span>
+      </div>
+    </div>
 
-        <!-- CTA buttons -->
-        <div class="h5" style="display:flex;flex-wrap:wrap;gap:11px;">
-          <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn btn-dark">
-            <i data-lucide="github" style="width:17px;height:17px;"></i> GitHub
-            <i data-lucide="arrow-up-right" style="width:14px;height:14px;opacity:.7;"></i>
-          </a>
-          <a href="#projects" class="btn btn-ghost">
-            View projects <i data-lucide="chevron-down" style="width:15px;height:15px;"></i>
-          </a>
-          <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-warm">
-            <i data-lucide="send" style="width:15px;height:15px;"></i> Get in touch
-          </a>
+    <!-- RIGHT: photo + socials -->
+    <div class="hero-right">
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="photo-ring-accent"></div>
+        <div class="photo-circle">
+          <img id="pfp" src="photo.jpg" alt="Mayank Joshi"
+               onerror="this.style.display='none';document.getElementById('pfp-fallback').style.display='flex';" />
+          <div class="photo-fallback" id="pfp-fallback" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
         </div>
       </div>
 
-      <!-- Right: profile card -->
-      <div class="profile-col" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="photo-nametag">
+        <div class="photo-nametag-name">Mayank Joshi</div>
+        <div class="photo-nametag-role">Gen AI · Backend Engineer</div>
+      </div>
 
-        <!-- Avatar with spinning ring -->
-        <div style="position:relative;margin-bottom:1.5rem;">
-          <!-- Outer dashed ring (spins) -->
-          <div class="spin-slow" style="position:absolute;inset:-12px;border-radius:50%;border:1.5px dashed var(--border);pointer-events:none;"></div>
-          <!-- Accent arc on top of ring -->
-          <div class="spin-slow" style="position:absolute;inset:-12px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--accent);border-right-color:var(--accent);pointer-events:none;"></div>
-
-          <!-- Photo circle — replace src="photo.jpg" with your image path -->
-          <div style="width:176px;height:176px;border-radius:50%;overflow:hidden;border:3px solid var(--bg3);box-shadow:0 8px 32px rgba(28,24,20,0.13);background:var(--bg3);position:relative;">
-            <img id="pfp" src="photo.jpg" alt="Mayank Joshi"
-                 style="width:100%;height:100%;object-fit:cover;"
-                 onerror="this.style.display='none';document.getElementById('pfp-fallback').style.display='flex';" />
-            <div id="pfp-fallback" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#e8e2d8,#ddd7cc);">
-              <i data-lucide="user-round" style="width:54px;height:54px;color:var(--soft);margin-bottom:5px;"></i>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--soft);text-transform:uppercase;">Add photo</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Name tag -->
-        <div style="text-align:center;margin-bottom:1.2rem;">
-          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--ink);">Mayank Joshi</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Gen AI · Backend Engineer</div>
-        </div>
-
-        <!-- Detail rows -->
-        <div style="width:100%;display:flex;flex-direction:column;gap:9px;">
-
-          <div class="detail-row">
-            <div class="detail-icon"><i data-lucide="map-pin" style="width:13px;height:13px;color:var(--accent);"></i></div>
-            <div>
-              <div class="detail-label">Location</div>
-              <div class="detail-value">Delhi, India</div>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <div class="detail-icon"><i data-lucide="graduation-cap" style="width:13px;height:13px;color:var(--accent);"></i></div>
-            <div>
-              <div class="detail-label">Education</div>
-              <div class="detail-value">B.Tech IT · ADGITM '26</div>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <div class="detail-icon"><i data-lucide="github" style="width:13px;height:13px;color:var(--accent);"></i></div>
-            <div>
-              <div class="detail-label">GitHub</div>
-              <a href="https://github.com/teenybopper" target="_blank" rel="noopener"
-                 style="font-size:.88rem;font-weight:500;color:var(--accent);text-decoration:none;margin-top:1px;display:block;">
-                teenybopper ↗
-              </a>
-            </div>
-          </div>
-
-          <div class="detail-row" style="background:rgba(253,240,232,0.85);border-color:var(--faint-b);">
-            <div class="detail-icon">
-              <span style="width:9px;height:9px;border-radius:50%;background:var(--green);display:block;"></span>
-            </div>
-            <div>
-              <div class="detail-label">Status</div>
-              <div class="detail-value">Open to opportunities</div>
-            </div>
-          </div>
-
-        </div>
-      </div><!-- /profile card -->
-
-    </div><!-- /hero grid -->
-
-    <!-- Scroll hint -->
-    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;opacity:.35;pointer-events:none;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);">scroll</span>
-      <i data-lucide="mouse" style="width:15px;height:15px;color:var(--soft);"></i>
+      <div class="hero-socials">
+        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://twitter.com/teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://medium.com/@teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="Medium">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        </a>
+      </div>
     </div>
+
+  </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <span class="scroll-line"></span>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════ -->
-<section id="about" style="border-top:1px solid var(--border);">
-  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
-
-    <div class="reveal" style="margin-bottom:2.5rem;">
-      <span class="chip"><i data-lucide="user" style="width:11px;height:11px;"></i> About</span>
-    </div>
-
-    <div class="reveal about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;">
-
-      <!-- Text -->
-      <div>
-        <p style="font-size:1.12rem;line-height:1.85;color:var(--ink);margin-bottom:1.2rem;">
-          Final-year <strong style="color:var(--accent);">Information Technology</strong> student at ADGITM, Delhi — graduating June 2026.
-          I work at the intersection of language models and real backend engineering.
-        </p>
-        <p style="font-size:1.02rem;line-height:1.85;color:var(--mid);margin-bottom:1.2rem;">
-          My focus is building things that are genuinely useful: RAG pipelines that retrieve the right context,
-          LLM apps that don't hallucinate, and APIs that are clean and maintainable. I've shipped across
-          two companies and a handful of personal projects.
-        </p>
-        <p style="font-size:1.02rem;line-height:1.85;color:var(--mid);">
-          Outside of code I enjoy hackathons, breaking down how frontier models reason, and occasionally watching cricket.
-        </p>
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience" class="section section-alt">
+  <div class="container">
+    <div class="section-label reveal">Work Experience</div>
+    <div>
+      <div class="exp-item reveal">
+        <div class="exp-date">Oct'25 — Present</div>
+        <div>
+          <div class="exp-role">AI / Backend Engineer</div>
+          <div class="exp-company">Kosmoz Consulting</div>
+          <p class="exp-desc">[Describe what you built — RAG pipelines, LLM integrations, backend services, APIs, etc.]</p>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">OpenAI API</span>
+            <span class="tag">[Add tech]</span>
+          </div>
+        </div>
       </div>
-
-      <!-- Stat cards -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-
-        <div class="card" style="grid-column:1/-1;padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Status</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.98rem;display:flex;align-items:center;gap:8px;">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
-            Open to opportunities
+      <div class="exp-item reveal">
+        <div class="exp-date">Oct'24 — Feb'26</div>
+        <div>
+          <div class="exp-role">AI Engineer + Backend dev (Full-time, previously AI Intern)</div>
+          <div class="exp-company">Deeplogic AI</div>
+          <ul class="exp-desc" style="list-style-type:disc; padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; margin-top:0.4rem; margin-bottom:1rem;">
+            <li><strong>PDF Translator Tool:</strong> Developed an end-to-end solution for translating German PDFs to English, handling full-stack implementation and integrating a custom-trained model.</li>
+            <li><strong>OCR Automation System:</strong> Engineered a pipeline to extract and overlay text from PDFs while preserving layout, integrating with a Django backend for faster processing.</li>
+            <li><strong>Comic Production Automation:</strong> Contributed to automating the comic book production pipeline by leveraging generative AI.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Django</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">OCR</span>
           </div>
         </div>
-
-        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Degree</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;">B.Tech IT</div>
-          <div style="font-size:.78rem;color:var(--soft);margin-top:2px;">ADGITM · 2026</div>
-        </div>
-
-        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">Location</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:5px;">
-            <i data-lucide="map-pin" style="width:13px;height:13px;color:var(--accent);"></i> Delhi, India
-          </div>
-        </div>
-
-        <div class="card" style="padding:17px 20px;border-radius:12px;background:var(--faint);border:1px solid var(--faint-b);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:5px;">GPA</div>
-          <div style="display:flex;align-items:baseline;gap:4px;">
-            <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;color:var(--accent);">7.4</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--soft);">/ 10</span>
-          </div>
-        </div>
-
-        <div class="card" style="grid-column:1/-1;padding:17px 20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:6px;">GitHub</div>
-          <a href="https://github.com/teenybopper" target="_blank" rel="noopener"
-             style="font-family:'Syne',sans-serif;font-weight:600;font-size:.92rem;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;">
-            teenybopper <i data-lucide="arrow-up-right" style="width:13px;height:13px;"></i>
-          </a>
-        </div>
-
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     EXPERIENCE
-═══════════════════════════════════════ -->
-<section id="experience" style="border-top:1px solid var(--border);background:var(--bg2);">
-  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-label reveal">Projects</div>
+    <div class="projects-grid">
 
-    <div class="reveal" style="margin-bottom:2.5rem;">
-      <span class="chip"><i data-lucide="briefcase" style="width:11px;height:11px;"></i> Work Experience</span>
-    </div>
+      <!-- each card = <a> → repo link; GitHub badge fades in on hover -->
 
-    <div style="display:flex;flex-direction:column;gap:20px;">
-
-      <!-- Job 1 – Most recent (placeholder – fill in company + details) -->
-      <div class="reveal tl-item" style="position:relative;padding-left:2.4rem;">
-        <div class="tl-dot" style="position:absolute;left:0;top:18px;">
-          <div style="width:16px;height:16px;border-radius:50%;background:var(--faint);border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></div>
-          </div>
+      <a href="https://github.com/teenybopper/plugtalk" target="_blank" rel="noopener"
+         class="proj-card proj-featured reveal">
+        <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 14h5"/></svg></div>
+        <div class="proj-title">PlugTalk — LLM Chatbot</div>
+        <p class="proj-desc">A dynamic chatbot that scrapes website content and answers queries in real time. Custom API keys, live document retrieval, and vector-based response generation via a clean RAG pipeline with persistent Chroma embeddings.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">LangChain</span><span class="proj-tag">OpenAI</span><span class="proj-tag">Chroma</span><span class="proj-tag">Streamlit</span><span class="proj-tag">RAG</span>
         </div>
-        <div class="card" style="padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
-          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;">
-            <div>
-              <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:0;">AI / Backend Engineer</h3>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Company Name · [Update me]</div>
-            </div>
-            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--soft);white-space:nowrap;">
-              <i data-lucide="calendar" style="width:11px;height:11px;"></i> 2025 — Present
-            </span>
-          </div>
-          <p style="font-size:.98rem;line-height:1.78;color:var(--mid);margin-bottom:14px;">
-            [Describe what you built — RAG pipelines, LLM integrations, backend services, APIs, etc.]
-          </p>
-          <div style="display:flex;flex-wrap:wrap;gap:7px;">
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Python</span>
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">LangChain</span>
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">[Add tech]</span>
-          </div>
-        </div>
-      </div>
+      </a>
 
-      <!-- Job 2 (placeholder – fill in company + details) -->
-      <div class="reveal tl-item" style="position:relative;padding-left:2.4rem;">
-        <div class="tl-dot" style="position:absolute;left:0;top:18px;">
-          <div style="width:16px;height:16px;border-radius:50%;background:var(--bg3);border:2.5px solid var(--border);display:flex;align-items:center;justify-content:center;">
-            <div style="width:6px;height:6px;border-radius:50%;background:var(--soft);"></div>
-          </div>
-        </div>
-        <div class="card" style="padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
-          <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;">
-            <div>
-              <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;margin:0;">AI / Backend Engineer</h3>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--accent);margin-top:3px;letter-spacing:.04em;">Company Name · [Update me]</div>
-            </div>
-            <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:var(--bg3);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--soft);white-space:nowrap;">
-              <i data-lucide="calendar" style="width:11px;height:11px;"></i> 2024 — 2025
-            </span>
-          </div>
-          <p style="font-size:.98rem;line-height:1.78;color:var(--mid);margin-bottom:14px;">
-            [Describe what you shipped, tools used, impact made.]
-          </p>
-          <div style="display:flex;flex-wrap:wrap;gap:7px;">
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Django</span>
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">REST APIs</span>
-            <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">[Add tech]</span>
-          </div>
-        </div>
-      </div>
+      <a href="https://github.com/teenybopper/football-qa" target="_blank" rel="noopener"
+         class="proj-card proj-card-sm reveal">
+        <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 4.6 4.6m5 5 4.6 4.6M19.1 4.9l-4.6 4.6m-5 5-4.6 4.6"/></svg></div>
+        <div class="proj-title">Football Q&amp;A</div>
+        <p class="proj-desc">NLP-powered web app that answers natural language queries about football matches in real time.</p>
+        <div class="proj-tags"><span class="proj-tag">LangChain</span><span class="proj-tag">OpenAI</span><span class="proj-tag">NLP</span></div>
+      </a>
 
-    </div>
-  </div>
-</section>
+      <a href="https://github.com/teenybopper/cricket-community" target="_blank" rel="noopener"
+         class="proj-card proj-card-3 reveal">
+        <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="proj-title">Digital Cricket Community</div>
+        <p class="proj-desc">Full-stack platform for cricket fans — posts, search, user profiles, and sponsorship features.</p>
+        <div class="proj-tags"><span class="proj-tag">Django</span><span class="proj-tag">MySQL</span><span class="proj-tag">Bootstrap</span></div>
+      </a>
 
+      <a href="https://github.com/teenybopper/legal-aid-chatbot" target="_blank" rel="noopener"
+         class="proj-card proj-card-3 reveal">
+        <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="proj-title">Legal Aid Chatbot</div>
+        <p class="proj-desc">Free chatbot for basic legal assistance on abuse-related issues. 6th place at Google DSC Hackathon.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span class="proj-tag">Django</span></div>
+      </a>
 
-<!-- ═══════════════════════════════════════
-     PROJECTS
-═══════════════════════════════════════ -->
-<section id="projects" style="border-top:1px solid var(--border);">
-  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
-
-    <div class="reveal" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:2.5rem;">
-      <span class="chip"><i data-lucide="layout-grid" style="width:11px;height:11px;"></i> Projects</span>
-      <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost">
-        <i data-lucide="github" style="width:13px;height:13px;"></i> All on GitHub
+      <a href="https://github.com/teenybopper/cloudburst-prediction" target="_blank" rel="noopener"
+         class="proj-card proj-card-3 reveal">
+        <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+        <div class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"/><line x1="8" y1="16" x2="8" y2="21"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="16" y1="16" x2="16" y2="21"/></svg></div>
+        <div class="proj-title">Cloudburst Prediction</div>
+        <p class="proj-desc">ML model predicting cloudbursts by location with ~65% accuracy. Built for Smart India Hackathon 2023.</p>
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ML</span><span class="proj-tag">SIH '23</span></div>
       </a>
     </div>
+  </div>
+</section>
 
-    <div class="projects-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;">
 
-      <!-- Featured card (spans 2 cols) -->
-      <div class="reveal card projects-featured" style="grid-column:span 2;padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px;">
-          <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);">
-            <i data-lucide="message-square-code" style="width:20px;height:20px;color:var(--accent);"></i>
-          </div>
-          <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost">
-            <i data-lucide="github" style="width:12px;height:12px;"></i> Source
-          </a>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.22rem;margin:0 0 8px;">PlugTalk — LLM Chatbot</h3>
-        <p style="font-size:.97rem;line-height:1.78;color:var(--mid);margin-bottom:15px;">
-          A dynamic chatbot that scrapes website content and answers queries in real time using conversational AI.
-          Supports custom API keys with live document retrieval and vector-based response generation.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:7px;">
-          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">LangChain</span>
-          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">OpenAI</span>
-          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Chroma</span>
-          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">Streamlit</span>
-          <span class="pill" style="padding:5px 11px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.73rem;">RAG</span>
-        </div>
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" class="section section-alt">
+  <div class="container">
+    <div class="section-label reveal">Skills &amp; Stack</div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">AI / ML</div>
+      <div class="skill-pills">
+        <span class="skill-pill">LangChain</span><span class="skill-pill">OpenAI API</span><span class="skill-pill">RAG</span><span class="skill-pill">Chroma DB</span><span class="skill-pill">Prompt Engineering</span><span class="skill-pill">Vector Search</span>
       </div>
-
-      <!-- Football Q&A -->
-      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
-        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
-          <i data-lucide="trophy" style="width:18px;height:18px;color:var(--accent);"></i>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Football Q&amp;A</h3>
-        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
-          NLP-powered web app that answers natural language queries about football matches in real time.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">LangChain</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">OpenAI</span>
-        </div>
-        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
-          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
-        </a>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Backend</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Python</span><span class="skill-pill">Django</span><span class="skill-pill">Flask</span><span class="skill-pill">REST APIs</span><span class="skill-pill">SQL / MySQL</span>
       </div>
-
-      <!-- Cricket Community -->
-      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
-        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
-          <i data-lucide="users" style="width:18px;height:18px;color:var(--accent);"></i>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Digital Cricket Community</h3>
-        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
-          Full-stack platform for cricket fans — posts, search, user profiles, and sponsorship features built with Django.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Django</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">MySQL</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Bootstrap</span>
-        </div>
-        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
-          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
-        </a>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Tools &amp; Other</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Git / GitHub</span><span class="skill-pill">Streamlit</span><span class="skill-pill">Linux</span><span class="skill-pill">Postman</span><span class="skill-pill">JavaScript</span><span class="skill-pill">HTML / CSS</span><span class="skill-pill">DSA · Python</span>
       </div>
-
-      <!-- Legal Aid Chatbot -->
-      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
-        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
-          <i data-lucide="scale" style="width:18px;height:18px;color:var(--accent);"></i>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Legal Aid Chatbot</h3>
-        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
-          Free chatbot for basic legal assistance on abuse-related issues, with informative blogs. Built at Google DSC hackathon (6th place).
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Python</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">NLP</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Django</span>
-        </div>
-        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
-          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
-        </a>
-      </div>
-
-      <!-- Cloudburst Prediction -->
-      <div class="reveal card" style="padding:26px;border-radius:15px;background:var(--bg2);border:1px solid var(--border);display:flex;flex-direction:column;">
-        <div style="padding:9px;border-radius:10px;background:var(--faint);border:1px solid var(--faint-b);display:inline-flex;margin-bottom:14px;align-self:flex-start;">
-          <i data-lucide="cloud-rain" style="width:18px;height:18px;color:var(--accent);"></i>
-        </div>
-        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.08rem;margin:0 0 8px;">Cloudburst Prediction</h3>
-        <p style="font-size:.92rem;line-height:1.75;color:var(--mid);flex:1;margin-bottom:14px;">
-          ML model that takes location as input and predicts cloudbursts with up to 65% accuracy. Built for Smart India Hackathon 2023.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">Python</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">ML</span>
-          <span class="pill" style="padding:4px 10px;border-radius:6px;background:var(--bg3);color:var(--mid);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.7rem;">SIH '23</span>
-        </div>
-        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-ghost" style="align-self:flex-start;">
-          <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i> View
-        </a>
-      </div>
-
-      <!-- Placeholder for new project — full width -->
-      <div class="reveal" style="grid-column:1/-1;padding:20px 26px;border-radius:14px;background:var(--faint);border:1.5px dashed var(--faint-b);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <div style="display:flex;align-items:center;gap:16px;">
-          <div style="padding:9px;border-radius:10px;background:var(--bg);border:1px solid var(--faint-b);">
-            <i data-lucide="plus-circle" style="width:18px;height:18px;color:var(--accent);"></i>
-          </div>
-          <div>
-            <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:.97rem;color:var(--accent);">New Project — [Update me]</div>
-            <div style="font-size:.88rem;color:var(--soft);margin-top:2px;">Add your latest project — name, description, tech stack &amp; link.</div>
-          </div>
-        </div>
-        <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn-sm btn-sm-dark">
-          <i data-lucide="github" style="width:13px;height:13px;"></i> GitHub
-        </a>
-      </div>
-
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">Smart India Hackathon '24 — cleared for national finals</div></div>
+      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">Launchpad Ideathon — Top 10 out of 100+ teams</div></div>
+      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">6th place — Google DSC Hackathon (25 teams)</div></div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     SKILLS
-═══════════════════════════════════════ -->
-<section id="skills" style="border-top:1px solid var(--border);background:var(--bg2);">
-  <div style="max-width:1080px;margin:0 auto;padding:5rem 1.5rem;">
-
-    <div class="reveal" style="margin-bottom:2.5rem;">
-      <span class="chip"><i data-lucide="cpu" style="width:11px;height:11px;"></i> Skills &amp; Stack</span>
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;">Contact</div>
+    <h2 class="contact-heading reveal">Let's build something<br/><em>together.</em></h2>
+    <p class="contact-sub reveal">Looking for full-time roles and internships in AI engineering &amp; backend. If you're building something interesting, I'd love to hear about it.</p>
+    <div class="reveal" style="display:flex;justify-content:center;">
+      <a href="mailto:mayankjoshi@example.com" class="contact-email-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        mayankjo@outlook.com
+      </a>
     </div>
-
-    <div class="reveal skills-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;">
-
-      <!-- AI / ML -->
-      <div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
-          <i data-lucide="brain-circuit" style="width:15px;height:15px;color:var(--accent);"></i>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">AI / ML</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">LangChain</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">OpenAI API</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">RAG</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Chroma DB</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Prompt Eng.</span>
-        </div>
-      </div>
-
-      <!-- Backend -->
-      <div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
-          <i data-lucide="server" style="width:15px;height:15px;color:var(--accent);"></i>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Backend</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Python</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Django</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Flask</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">REST APIs</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">SQL / MySQL</span>
-        </div>
-      </div>
-
-      <!-- Tools -->
-      <div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
-          <i data-lucide="wrench" style="width:15px;height:15px;color:var(--accent);"></i>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Tools</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Git / GitHub</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Streamlit</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Linux</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Postman</span>
-        </div>
-      </div>
-
-      <!-- Other -->
-      <div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:.9rem;">
-          <i data-lucide="code-2" style="width:15px;height:15px;color:var(--accent);"></i>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Other</span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">JavaScript</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">HTML / CSS</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">DSA · Python</span>
-          <span class="pill" style="padding:8px 13px;border-radius:8px;background:var(--bg3);color:var(--ink);border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:.8rem;">LeetCode</span>
-        </div>
-      </div>
-
+    <div class="contact-footnote reveal">
+      Also on &nbsp;
+      <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://twitter.com/teenybopper" target="_blank" rel="noopener" class="footer-link">Twitter</a>
+      &nbsp;·&nbsp;
+      <a href="https://medium.com/@teenybopper" target="_blank" rel="noopener" class="footer-link">Medium</a>
     </div>
-
-    <!-- Achievements -->
-    <div class="reveal" style="margin-top:2.5rem;padding:22px 26px;border-radius:14px;background:var(--bg);border:1px solid var(--border);">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:1.1rem;">
-        <i data-lucide="award" style="width:15px;height:15px;color:var(--accent);"></i>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">Achievements</span>
-      </div>
-      <div class="achieve-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
-        <div style="display:flex;align-items:flex-start;gap:9px;">
-          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
-          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">SIH '24 — cleared for national finals</p>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:9px;">
-          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
-          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">Launchpad Ideathon — Top 10 out of 100+ teams</p>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:9px;">
-          <i data-lucide="check-circle-2" style="width:15px;height:15px;margin-top:2px;flex-shrink:0;color:var(--green);"></i>
-          <p style="font-size:.93rem;line-height:1.65;color:var(--mid);margin:0;">6th place — Google DSC Hackathon (25 teams)</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════ -->
-<section id="contact" style="border-top:1px solid var(--border);">
-  <div style="max-width:1080px;margin:0 auto;padding:6rem 1.5rem;text-align:center;">
-
-    <div class="reveal" style="display:flex;justify-content:center;margin-bottom:1.5rem;">
-      <span class="chip"><i data-lucide="send" style="width:11px;height:11px;"></i> Contact</span>
-    </div>
-
-    <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.1rem,5vw,3.6rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:1.2rem;">
-      Let's build something<br/><span style="color:var(--accent);">together.</span>
-    </h2>
-
-    <p class="reveal" style="font-size:1.07rem;color:var(--mid);max-width:460px;margin:0 auto 2.5rem;line-height:1.85;">
-      Looking for full-time roles and internships in AI engineering &amp; backend development.
-      If you're building something interesting, I'd love to hear about it.
-    </p>
-
-    <div class="reveal contact-btns" style="display:flex;flex-wrap:wrap;justify-content:center;gap:11px;">
-      <a href="mailto:mayank.joshi2174@gmail.com" class="btn btn-dark">
-        <i data-lucide="mail" style="width:17px;height:17px;"></i>
-        mayank.joshi2174@gmail.com
-      </a>
-      <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="btn btn-ghost">
-        <i data-lucide="github" style="width:17px;height:17px;"></i> GitHub
-      </a>
-      <a href="tel:+918700056469" class="btn btn-ghost">
-        <i data-lucide="phone" style="width:17px;height:17px;"></i> +91 87000 56469
-      </a>
-    </div>
-
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span class="footer-text">Mayank Joshi · Delhi, India · 2025</span>
+  <div class="footer-links">
+    <a href="#experience" class="footer-link">Work</a>
+    <a href="#projects"   class="footer-link">Projects</a>
+    <a href="#skills"     class="footer-link">Skills</a>
+    <a href="#contact"    class="footer-link">Contact</a>
   </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
-<footer style="border-top:1px solid var(--border);padding:1.4rem 1.5rem;text-align:center;">
-  <p style="font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);">
-    Mayank Joshi &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; 2025
-  </p>
 </footer>
 
 
-<!-- ═══════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════ -->
 <script>
-  // ── Init Lucide icons ──
-  lucide.createIcons();
-
-  // ── Profile photo fallback ──
-  // If photo.jpg doesn't exist, show the initials placeholder
-  const pfp = document.getElementById('pfp');
-  const pfpFallback = document.getElementById('pfp-fallback');
-  if (pfp) {
-    pfp.addEventListener('load', () => {
-      pfp.style.display = 'block';
-      pfpFallback.style.display = 'none';
-    });
-    pfp.addEventListener('error', () => {
-      pfp.style.display = 'none';
-      pfpFallback.style.display = 'flex';
-    });
-    // Trigger check if already loaded (cached)
-    if (pfp.complete) {
-      if (pfp.naturalWidth === 0) {
-        pfp.style.display = 'none';
-        pfpFallback.style.display = 'flex';
-      } else {
-        pfp.style.display = 'block';
-        pfpFallback.style.display = 'none';
-      }
-    }
-  }
-
-  // ── Scroll reveal ──
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('in'), i * 70);
-        revealObserver.unobserve(entry.target);
+  /* scroll reveal */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 55);
+        obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.07 });
-  reveals.forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // ── Active nav link on scroll ──
+  /* active nav */
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-a');
-  function updateActiveNav() {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 130) current = s.id;
-    });
-    navLinks.forEach(a => {
-      const isActive = a.getAttribute('href') === '#' + current;
-      a.classList.toggle('active', isActive);
-    });
+  const navAs    = document.querySelectorAll('nav .nav-a');
+  function updateNav() {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   }
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 
-  // ── Mobile menu toggle ──
+  /* mobile menu */
   function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('menu-icon');
-    const isOpen = menu.classList.toggle('open');
-    // Swap icon
-    icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
-    lucide.createIcons();
+    const m = document.getElementById('mobile-menu');
+    const open = m.classList.toggle('open');
+    document.getElementById('menu-icon').innerHTML = open
+      ? '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+      : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
   }
 
-  // ── Close mobile menu on outside click ──
-  document.addEventListener('click', (e) => {
-    const header = document.getElementById('site-header');
-    if (!header.contains(e.target)) {
-      const menu = document.getElementById('mobile-menu');
-      if (menu.classList.contains('open')) toggleMenu();
-    }
-  });
+  /* photo fallback */
+  const pfp = document.getElementById('pfp');
+  if (pfp && pfp.complete && pfp.naturalWidth === 0) {
+    pfp.style.display = 'none';
+    document.getElementById('pfp-fallback').style.display = 'flex';
+  }
 </script>
 </body>
 </html>
