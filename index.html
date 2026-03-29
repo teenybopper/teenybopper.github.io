@@ -123,7 +123,7 @@
       padding: 3rem 1rem 4rem;
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 260px;
+      grid-template-columns: 1fr 300px;
       gap: 2.5rem;
       align-items: center;
     }
@@ -212,12 +212,12 @@
     }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .photo-circle {
-      width: 200px; height: 200px; border-radius: 50%;
+      width: 350px; height: 350px; border-radius: 50%;
       overflow: hidden; border: 3px solid var(--bg3);
       box-shadow: 0 10px 36px rgba(28,24,20,.14);
       background: var(--bg3); position: relative;
     }
-    .photo-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center 3%; display: block; }
     .photo-fallback {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
@@ -392,7 +392,7 @@
       .hero-inner { grid-template-columns: 1fr; }
       .hero-right { flex-direction: row; gap: 1.5rem; align-self: start; justify-content: flex-start; }
       .photo-wrap { margin-bottom: 0; }
-      .photo-circle { width: 90px; height: 90px; }
+      .photo-circle { width: 150px; height: 150px; }
       .photo-ring, .photo-ring-accent { inset: -6px; }
       .exp-item { grid-template-columns: 1fr; gap: .55rem; }
       .proj-featured, .proj-card-sm, .proj-card-3 { grid-column: span 12; }
@@ -488,7 +488,7 @@
         <div class="photo-ring"></div>
         <div class="photo-ring-accent"></div>
         <div class="photo-circle">
-          <img id="pfp" src="photo.jpg" alt="Mayank Joshi"
+          <img id="pfp" src="Mayank.jpeg" alt="Mayank Joshi"
                onerror="this.style.display='none';document.getElementById('pfp-fallback').style.display='flex';" />
           <div class="photo-fallback" id="pfp-fallback" style="display:none">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
