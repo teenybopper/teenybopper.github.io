@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mayank Joshi — Generative AI &amp; Backend Engineer</title>
+  <title>Mayank Joshi</title>
   <meta name="description" content="Mayank Joshi — Generative AI and Backend Engineer based in Delhi, India." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -282,7 +282,13 @@
     .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
     .exp-date { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--soft); padding-top: 4px; }
     .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 3px; }
-    .exp-company { font-family: 'JetBrains Mono', monospace; font-size: .74rem; color: var(--accent); letter-spacing: .04em; margin-bottom: .8rem; }
+    .exp-company {
+      font-family: 'JetBrains Mono', monospace; font-size: .74rem;
+      color: var(--accent); letter-spacing: .04em; margin-bottom: .8rem;
+      text-decoration: none; display: inline-block;
+      transition: opacity .2s;
+    }
+    .exp-company:hover { opacity: .72; text-decoration: underline; }
     .exp-desc { font-size: 1rem; line-height: 1.82; color: var(--mid); margin-bottom: .85rem; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
@@ -309,7 +315,6 @@
       transform: translateY(-3px);
       box-shadow: 0 12px 36px rgba(191,85,33,.1);
     }
-    /* GitHub badge — visible on hover */
     .proj-gh {
       position: absolute; top: 16px; right: 16px;
       width: 30px; height: 30px; border-radius: 50%;
@@ -322,6 +327,16 @@
     .proj-gh svg { width: 14px; height: 14px; }
     .proj-card:hover .proj-gh { opacity: 1; transform: scale(1); color: var(--accent); border-color: var(--accent); }
 
+    /* Coming soon badge */
+    .proj-coming-soon {
+      position: absolute; top: 16px; right: 16px;
+      font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px;
+      background: var(--faint); border: 1px solid var(--faint-b);
+      color: var(--accent); font-weight: 500;
+    }
+
     .proj-icon {
       width: 42px; height: 42px; border-radius: 10px;
       background: var(--faint); border: 1px solid var(--faint-b);
@@ -333,12 +348,17 @@
     .proj-desc { font-size: .93rem; line-height: 1.78; color: var(--mid); flex: 1; margin-bottom: 1rem; }
     .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .proj-tag { font-family: 'JetBrains Mono', monospace; font-size: .64rem; padding: 3px 8px; border-radius: 4px; background: var(--bg3); color: var(--soft); border: 1px solid var(--border); }
+    .proj-tag-special {
+      font-family: 'JetBrains Mono', monospace; font-size: .64rem; padding: 3px 8px; border-radius: 4px;
+      background: var(--faint); color: var(--accent); border: 1px solid var(--faint-b); font-weight: 600;
+    }
 
     .proj-featured { grid-column: span 7; }
     .proj-featured .proj-title { font-size: 1.28rem; }
     .proj-featured .proj-desc  { font-size: 1rem; }
     .proj-card-sm { grid-column: span 5; }
     .proj-card-3  { grid-column: span 4; }
+    .proj-card-full { grid-column: span 12; }
 
     /* ── SKILLS ── */
     .skill-group { margin-bottom: 1.5rem; }
@@ -358,6 +378,17 @@
       transition: background .2s, color .2s, border-color .2s;
     }
     .skill-pill:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .skill-pill-link {
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem;
+      padding: 7px 14px; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--mid); cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .skill-pill-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .skill-pill-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
     .achieve-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 1.8rem; }
     .achieve-card { padding: 14px 16px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
     .achieve-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 6px; }
@@ -387,17 +418,29 @@
     .footer-link { font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .08em; color: var(--soft); text-decoration: none; transition: color .2s; }
     .footer-link:hover { color: var(--accent); }
 
+    /* leetcode footer badge */
+    .footer-lc {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+      letter-spacing: .08em; color: var(--soft); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-lc:hover { color: var(--accent); }
+    .footer-lc svg { width: 13px; height: 13px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-left { order: 2; }
       .hero-right { order: 1; flex-direction: row; gap: 1.5rem; align-self: start; justify-content: flex-start; }
       .hero-eyebrow { display: none !important; }
+      /* Hide the big h1 name on mobile; nametag below photo is shown instead */
+      .hero-name { display: none; }
       .photo-wrap { margin-bottom: 0; }
       .photo-circle { width: 150px; height: 150px; }
       .photo-ring, .photo-ring-accent { inset: -6px; }
       .exp-item { grid-template-columns: 1fr; gap: .55rem; }
-      .proj-featured, .proj-card-sm, .proj-card-3 { grid-column: span 12; }
+      .proj-featured, .proj-card-sm, .proj-card-3, .proj-card-full { grid-column: span 12; }
       .achieve-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
@@ -431,7 +474,7 @@
     <a href="#experience" class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Work</a>
     <a href="#projects"   class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Projects</a>
     <a href="#skills"     class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0">Skills</a>
-    <a href="resume.pdf"  class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0" target="_blank" rel="noopener">Resume</a>
+    <a href="resume.pdf"  class="nav-a" onclick="toggleMenu()" style="padding:.4rem 0" target="_blank" rel="noopener">CV</a>
     <a href="#contact" class="nav-cta" onclick="toggleMenu()" style="margin-top:.4rem;text-align:center">Say hello</a>
   </div>
 </header>
@@ -448,13 +491,17 @@
         Gen AI &nbsp;·&nbsp; Backend Engineer &nbsp;·&nbsp; Delhi, India
       </div>
 
+      <!-- Hidden on mobile via CSS; nametag below photo takes over -->
       <h1 class="hero-name">Mayank<br/><em>Joshi.</em></h1>
 
       <p class="hero-bio">
-        Final-year <strong>Information Technology</strong> student at ADGITM, graduating June 2026.
-        I build things at the intersection of language models and real backend engineering —
-        RAG pipelines that retrieve the right context, LLM apps that don't hallucinate,
-        and APIs that are clean and maintainable.
+        Final-year <strong>IT student</strong> at ADGITM, wrapping up in June 2026.
+        My heart genuinely belongs to <strong>agentic systems</strong> — and also to
+        <strong>FC Barcelona</strong> (non-negotiable). When I'm not shipping code,
+        I'm in the gym, out on the football pitch, or adding questionable tracks to
+        a playlist that's honestly too good to share. I build at the intersection of
+        LLMs and real backend engineering, RAG pipelines that actually retrieve the
+        right context, agents that get things done, and APIs that don't make future-me cringe.
       </p>
 
       <div class="hero-actions">
@@ -504,13 +551,20 @@
       </div>
 
       <div class="hero-socials">
+        <!-- GitHub -->
         <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <a href="https://twitter.com/teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="X / Twitter">
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/mayankjoshi" target="_blank" rel="noopener" class="hero-social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="https://twitter.com/mayankjoshiiii" target="_blank" rel="noopener" class="hero-social-btn" aria-label="X / Twitter">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://medium.com/@teenybopper" target="_blank" rel="noopener" class="hero-social-btn" aria-label="Medium">
+        <!-- Medium -->
+        <a href="https://medium.com/@mayank.joshi2174" target="_blank" rel="noopener" class="hero-social-btn" aria-label="Medium">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
         </a>
       </div>
@@ -533,8 +587,11 @@
         <div class="exp-date">Oct'25 — Present</div>
         <div>
           <div class="exp-role">AI / Backend Engineer</div>
-          <div class="exp-company">Kosmoz Consulting</div>
-          <p class="exp-desc">[Describe what you built — RAG pipelines, LLM integrations, backend services, APIs, etc.]</p>
+          <a href="https://kosmoz.in" target="_blank" rel="noopener" class="exp-company">Kosmoz Consulting ↗</a>
+          <ul class="exp-desc" style="list-style-type:disc; padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; margin-top:0.4rem; margin-bottom:1rem;">
+            <li><strong>Knowledge Graph-Enabled RAG System:</strong> Contributed to integrating a Neo4j knowledge graph into a RAG system to improve structured retrieval and context grounding.</li>
+            <li><strong>End-to-End Product Architecture:</strong> Built the overall software architecture spanning backend, frontend, and upcoming AI features for a market-ready product.</li>
+          </ul>
           <div class="tag-row">
             <span class="tag">Python</span>
             <span class="tag">LangChain</span>
@@ -547,7 +604,7 @@
         <div class="exp-date">Oct'24 — Feb'26</div>
         <div>
           <div class="exp-role">AI Engineer + Backend dev (Full-time, previously AI Intern)</div>
-          <div class="exp-company">Deeplogic AI</div>
+          <a href="https://deeplogic.ai" target="_blank" rel="noopener" class="exp-company">Deeplogic AI ↗</a>
           <ul class="exp-desc" style="list-style-type:disc; padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; margin-top:0.4rem; margin-bottom:1rem;">
             <li><strong>PDF Translator Tool:</strong> Developed an end-to-end solution for translating German PDFs to English, handling full-stack implementation and integrating a custom-trained model.</li>
             <li><strong>OCR Automation System:</strong> Engineered a pipeline to extract and overlay text from PDFs while preserving layout, integrating with a Django backend for faster processing.</li>
@@ -572,8 +629,26 @@
     <div class="section-label reveal">Projects</div>
     <div class="projects-grid">
 
-      <!-- each card = <a> → repo link; GitHub badge fades in on hover -->
+      <!-- WorkPilotAI — Coming Soon, full width -->
+      <div class="proj-card proj-card-full reveal" style="cursor:default;">
+        <div class="proj-coming-soon">✦ Coming Soon</div>
+        <div class="proj-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M18 2v4"/><path d="M20 4h-4"/>
+          </svg>
+        </div>
+        <div class="proj-title">WorkPilotAI — Agentic Meeting Pipeline</div>
+        <p class="proj-desc">An end-to-end agentic pipeline for your meetings. Built around a multi-agent orchestration layer so every meeting actually leads somewhere.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">LangChain</span>
+          <span class="proj-tag">Agents</span>
+          <span class="proj-tag">OpenAI</span>
+          <span class="proj-tag">Whisper</span>
+          <span class="proj-tag">FastAPI</span>
+        </div>
+      </div>
 
+      <!-- PlugTalk — featured -->
       <a href="https://github.com/teenybopper/plugtalk" target="_blank" rel="noopener"
          class="proj-card proj-featured reveal">
         <div class="proj-gh"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
@@ -620,6 +695,7 @@
         <p class="proj-desc">ML model predicting cloudbursts by location with ~65% accuracy. Built for Smart India Hackathon 2023.</p>
         <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">ML</span><span class="proj-tag">SIH '23</span></div>
       </a>
+
     </div>
   </div>
 </section>
@@ -629,28 +705,71 @@
 <section id="skills" class="section section-alt">
   <div class="container">
     <div class="section-label reveal">Skills &amp; Stack</div>
+
     <div class="skill-group reveal">
-      <div class="skill-group-label">AI / ML</div>
+      <div class="skill-group-label">Generative AI / Machine Learning</div>
       <div class="skill-pills">
-        <span class="skill-pill">LangChain</span><span class="skill-pill">OpenAI API</span><span class="skill-pill">RAG</span><span class="skill-pill">Chroma DB</span><span class="skill-pill">Prompt Engineering</span><span class="skill-pill">Vector Search</span>
+        <span class="skill-pill">Generative AI</span>
+        <span class="skill-pill">Machine Learning</span>
+        <span class="skill-pill">LLM Application Development</span>
+        <span class="skill-pill">LangChain</span>
+        <span class="skill-pill">OpenAI API</span>
+        <span class="skill-pill">RAG</span>
+        <span class="skill-pill">Prompt Engineering</span>
+        <span class="skill-pill">Vector Search</span>
+        <span class="skill-pill">ChromaDB</span>
+        <span class="skill-pill">AI Workflow Automation</span>
       </div>
     </div>
+
     <div class="skill-group reveal">
-      <div class="skill-group-label">Backend</div>
+      <div class="skill-group-label">Backend &amp; APIs</div>
       <div class="skill-pills">
-        <span class="skill-pill">Python</span><span class="skill-pill">Django</span><span class="skill-pill">Flask</span><span class="skill-pill">REST APIs</span><span class="skill-pill">SQL / MySQL</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">Django</span>
+        <span class="skill-pill">Flask</span>
+        <span class="skill-pill">RESTful APIs</span>
+        <span class="skill-pill">Backend Development</span>
+        <span class="skill-pill">API Integration</span>
       </div>
     </div>
+
     <div class="skill-group reveal">
-      <div class="skill-group-label">Tools &amp; Other</div>
+      <div class="skill-group-label">Databases &amp; Data</div>
       <div class="skill-pills">
-        <span class="skill-pill">Git / GitHub</span><span class="skill-pill">Streamlit</span><span class="skill-pill">Linux</span><span class="skill-pill">Postman</span><span class="skill-pill">JavaScript</span><span class="skill-pill">HTML / CSS</span><span class="skill-pill">DSA · Python</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">Data Processing</span>
+        <span class="skill-pill">Query Optimization</span>
       </div>
     </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Tools &amp; Developer Stack</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">Linux</span>
+        <span class="skill-pill">Postman</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">HTML / CSS</span>
+        <span class="skill-pill">Streamlit</span>
+      </div>
+    </div>
+
     <div class="achieve-grid">
-      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">Smart India Hackathon '24 — cleared for national finals</div></div>
-      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">Launchpad Ideathon — Top 10 out of 100+ teams</div></div>
-      <div class="achieve-card reveal"><div class="achieve-dot"></div><div class="achieve-text">6th place — Google DSC Hackathon (25 teams)</div></div>
+      <div class="achieve-card reveal">
+        <div class="achieve-dot"></div>
+        <div class="achieve-text">Smart India Hackathon 2024 — Selected for National Finals</div>
+      </div>
+      <div class="achieve-card reveal">
+        <div class="achieve-dot"></div>
+        <div class="achieve-text">Launchpad Ideathon — Top 10 among 100+ teams</div>
+      </div>
+      <div class="achieve-card reveal">
+        <div class="achieve-dot"></div>
+        <div class="achieve-text">Google DSC Hackathon — Secured 6th place among 25 teams</div>
+      </div>
     </div>
   </div>
 </section>
@@ -663,7 +782,7 @@
     <h2 class="contact-heading reveal">Let's build something<br/><em>together.</em></h2>
     <p class="contact-sub reveal">Looking for full-time roles and internships in AI engineering &amp; backend. If you're building something interesting, I'd love to hear about it.</p>
     <div class="reveal" style="display:flex;justify-content:center;">
-      <a href="mailto:mayankjoshi@example.com" class="contact-email-link">
+      <a href="mailto:mayankjo@outlook.com" class="contact-email-link">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         mayankjo@outlook.com
       </a>
@@ -672,9 +791,11 @@
       Also on &nbsp;
       <a href="https://github.com/teenybopper" target="_blank" rel="noopener" class="footer-link">GitHub</a>
       &nbsp;·&nbsp;
-      <a href="https://twitter.com/teenybopper" target="_blank" rel="noopener" class="footer-link">Twitter</a>
+      <a href="https://linkedin.com/in/mayankjoshi" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
       &nbsp;·&nbsp;
-      <a href="https://medium.com/@teenybopper" target="_blank" rel="noopener" class="footer-link">Medium</a>
+      <a href="https://twitter.com/mayankjoshiiii" target="_blank" rel="noopener" class="footer-link">Twitter</a>
+      &nbsp;·&nbsp;
+      <a href="https://medium.com/@mayank.joshi2174" target="_blank" rel="noopener" class="footer-link">Medium</a>
     </div>
   </div>
 </section>
@@ -689,6 +810,13 @@
     <a href="#skills"     class="footer-link">Skills</a>
     <a href="#contact"    class="footer-link">Contact</a>
   </div>
+  <!-- LeetCode DSA link -->
+  <a href="https://leetcode.com/teenybopper" target="_blank" rel="noopener" class="footer-lc" title="DSA · Data Structures & Algorithms in Python · LeetCode">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+    </svg>
+    DSA · LeetCode
+  </a>
 </footer>
 
 
